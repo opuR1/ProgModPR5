@@ -75,8 +75,8 @@ namespace ProgModPR5
                 string hashedPassword = PassHasher.HashPassword(password);
 
                 var context = Helper.GetContext();
-                
-                var user = context.Users.FirstOrDefault(u => u.Email == Email && u.Password == hashedPassword);
+                int RoleType = empl == true ? 1 : 2;
+                var user = context.Users.FirstOrDefault(u => u.Email == Email && u.Password == hashedPassword && u.RoleID == RoleType);
                 object ProfileType = null;
                 if (empl == true)
                 {
@@ -91,17 +91,20 @@ namespace ProgModPR5
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     string userName = "";
+                    string rtype = "";
                     if (empl == true)
                     {
                         var employee = ProfileType as Employees;
                         userName = employee.FirstName;
+                        rtype = "Сотрудник";
                     }
                     else
                     {
                         var client = ProfileType as Clients;
                         userName = client.FirstName;
+                        rtype = "Клиент";
                     }
-                    Console.WriteLine($"Вход выполнен успешно! Добро пожаловать, {userName}");
+                    Console.WriteLine($"Вход {rtype}а выполнен успешно! Добро пожаловать, {userName}");
                     Console.ResetColor();
                 }
                 else
