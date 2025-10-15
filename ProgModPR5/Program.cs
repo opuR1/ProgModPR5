@@ -75,7 +75,7 @@ namespace ProgModPR5
                 string hashedPassword = PassHasher.HashPassword(password);
 
                 var context = Helper.GetContext();
-
+                
                 var user = context.Users.FirstOrDefault(u => u.Email == Email && u.Password == hashedPassword);
                 object ProfileType = null;
                 if (empl == true)
@@ -112,7 +112,9 @@ namespace ProgModPR5
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Ошибка при входе: {ex.Message}");
+                Console.ResetColor();
             }
 
         }
@@ -120,8 +122,91 @@ namespace ProgModPR5
         {
             Console.Clear();
             Console.WriteLine("=== Создание аккаунта ===");
+            Console.WriteLine("Введите имя: ");
+            string FirstName = Console.ReadLine();
+            Console.WriteLine("Введите фамилию: ");
+            string LastName = Console.ReadLine();
+            Console.WriteLine("Введите отчество: (or None)");
+            string SurName = Console.ReadLine();
+            Console.WriteLine("Введите почту: ");
+            string Email = Console.ReadLine();
+            Console.WriteLine("Введите телефон: ");
+            string Phone = Console.ReadLine();
+            Console.WriteLine("Введите пароль: ");
+            string password = Console.ReadLine();
+            string hashedPassword = PassHasher.HashPassword(password);
+            Console.WriteLine($"Хэшированный пароль: {hashedPassword}");
+            Console.WriteLine("Сотрудник:(Y/N)  ");
+            string type = Console.ReadLine()?.ToUpper();
+            bool empl = false;
+            if (type == "Y")
+            {
+                empl = true;
+            }
+            CreateNewAccount(Email, password, empl, FirstName, LastName, SurName, Phone);
             Console.WriteLine("Нажмите любую клавишу для возврата в меню");
             Console.ReadKey();
+        }
+
+        private static void CreateNewAccount(string Email, string password, bool empl, string FirstName, string LastName, string SurName, string phone)
+        {
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(password))
+            {
+                Console.WriteLine("Логин и пароль не могут быть пустыми!");
+                return;
+            }
+            try
+            {
+                string hashedPassword = PassHasher.HashPassword(password);
+                var context = Helper.GetContext();
+
+                var newUser = new Users
+                {
+                    Email = Email,
+                    Password = hashedPassword,
+                    RoleID = empl ? 1 : 2
+                };
+                context.Users.Add(newUser);
+                context.SaveChanges();
+
+                int newUserID = newUser.UserID;
+                if (empl == true)
+                {
+                    var newEmployee = new Employees
+                    {
+                        FirstName = FirstName,
+                        LastName = LastName,
+                        SurName = SurName,
+                        PositionID = 1,
+                        Phone = phone,
+                        Email = Email,
+                        UserID = newUserID
+                    };
+                    context.Employees.Add(newEmployee);
+                }
+                else
+                {
+                    var client = new Clients
+                    {
+                        FirstName = FirstName,
+                        LastName = LastName,
+                        SurName = SurName,
+                        Email = Email,
+                        UserID = newUserID
+                    };
+                    context.Clients.Add(client);
+                }
+                context.SaveChanges();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Аккаунт успешно создан!");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Ошибка при создании аккаунта: {ex.Message}");
+                Console.ResetColor();
+            }
         }
     }
 }
