@@ -1,0 +1,15 @@
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\ProgModPR5.exe.config
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\ProgModPR5.exe
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\ProgModPR5.pdb
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\EntityFramework.dll
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\HashPassword.dll
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\HashPassword.pdb
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\EntityFramework.xml
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\obj\Debug\ProgModPR5.csproj.AssemblyReference.cache
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\obj\Debug\ProgModPR5.csproj.CoreCompileInputs.cache
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\obj\Debug\ProgModPR5.csproj.Up2Date
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\obj\Debug\ProgModPR5.exe
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\obj\Debug\ProgModPR5.pdb
+C:\Users\lel07\source\repos\ProgModPR5\ProgModPR5\obj\Debug\ProgModPR5.exe.config
